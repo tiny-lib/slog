@@ -13,7 +13,7 @@ type Logger struct {
 	log *slog.Logger
 }
 
-func NewLogger(log *slog.Logger) *Logger {
+func NewLogger(log *slog.Logger) log.Logger {
 	return &Logger{log: log}
 }
 
@@ -40,4 +40,9 @@ func (l Logger) Log(level log.Level, keyvals ...interface{}) error {
 		l.log.Debug("", data...)
 	}
 	return nil
+}
+
+// With returns a Logger that includes the given attributes in each output operation
+func With(l *slog.Logger, kv ...any) log.Logger {
+	return NewLogger(l.With(kv))
 }
