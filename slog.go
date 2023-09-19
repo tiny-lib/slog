@@ -29,7 +29,7 @@ func (l Logger) Log(level log.Level, keyvals ...interface{}) error {
 	}
 	switch level {
 	case log.LevelDebug:
-		l.log.Debug("", data)
+		l.log.Debug("", data...)
 	case log.LevelInfo:
 		l.log.Info("", data...)
 	case log.LevelWarn:
